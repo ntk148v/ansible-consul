@@ -22,7 +22,7 @@
 
     - name: Stop service consul, if running
       ansible.builtin.service:
-        name: consul
+        name: "{{ consul_systemd_service }}"
         state: stopped
         # Needed to force SysV service manager on Docker for Molecule tests
         use: "{{ ansible_service_mgr }}"
@@ -33,7 +33,7 @@
         path: "{{ service_unit_item }}"
         state: absent
       loop:
-        - /usr/lib/systemd/system/consul.service
+        - /usr/lib/systemd/system/{{ consul_systemd_service }}.service
         - /etc/init.d/consul
       loop_control:
         loop_var: service_unit_item

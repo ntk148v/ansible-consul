@@ -2,7 +2,7 @@
 - name: Start consul on Unix
   become: true
   ansible.builtin.service:
-    name: consul
+    name: "{{ consul_systemd_service }}"
     state: started
     # Needed to force SysV service manager on Docker for Molecule tests
     use: "{{ ansible_service_mgr }}"

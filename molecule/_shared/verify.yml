@@ -4,7 +4,7 @@
   tasks:
     - name: Verify that serivce consul is running
       ansible.builtin.service:
-        name: consul
+        name: "{{ consul_systemd_service }}"
         state: started
         use: service # systemd does not work easily in a container
       register: result_consul_service
